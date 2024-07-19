@@ -1,0 +1,41 @@
+favicon: /img/favicon.png
+
+# Logo Mark
+mark: Paimonlee
+logo_mark: null
+
+# Scroll button
+scroll_top_btn:
+  enable: true
+
+# NProgress
+nprogress: 
+  enable: true
+  color: "#131313"
+
+# Navigation menu
+menu:
+  Home: /
+  Archives: /archives
+  Category: /category
+  Tag: /tag
+  About: /about
+
+# Index Page config
+index:
+  enable_sticky: true
+  post_url_target: _self
+  enable_category: true
+  enable_tag: true
+
+# Tag Page config
+tagcloud:
+  min_font: 15
+  max_font: 30
+  unit: px
+  start_color: "#337ab7"
+  end_color: "#0d6efd"
+
+# Post Page config
+toc:
+  enable: true
