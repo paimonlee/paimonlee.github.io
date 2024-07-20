@@ -17,13 +17,13 @@ function listenSearchInput(url, searchId, resultId) {
     url,
     dataType: "xml",
     success: function (response) {
-      let data = $('entry', response).map(function() {
+      let data = $('entry', response).map(function () {
         return {
           title: $('title', this).text(),
-          categories: $('category', this).map(function() {
+          categories: $('category', this).map(function () {
             return this.innerHTML.trim();
           }).get(),
-          tags: $('tag', this).map(function() {
+          tags: $('tag', this).map(function () {
             return this.innerHTML.trim();
           }).get(),
           content: $('content', this).text().replace(/<[^>]+>/g, ''),
@@ -31,18 +31,18 @@ function listenSearchInput(url, searchId, resultId) {
         };
       }).get()
 
-      searchEl.on('input', function() {
+      searchEl.on('input', function () {
         resultEl.html('');
 
         let keyword = searchEl.val().trim().toLowerCase();
         let resultHTML = '';
 
         if (keyword.length > 1) {
-          data.forEach(function(post) {
+          data.forEach(function (post) {
             const _title = post.title.toLowerCase(),
-                  _categories = post.categories.map(c => c.toLowerCase()),
-                  _tags = post.tags.map(t => t.toLowerCase()),
-                  _content = post.content.toLowerCase();
+              _categories = post.categories.map(c => c.toLowerCase()),
+              _tags = post.tags.map(t => t.toLowerCase()),
+              _content = post.content.toLowerCase();
             let isMatch = false;
             let start = 0, end = post.content.length;
             let idx = _content.indexOf(keyword);
@@ -58,19 +58,19 @@ function listenSearchInput(url, searchId, resultId) {
             end = idx + 80 <= _content.length ? idx + 80 : _content.length;
             matchContent = post.content.slice(start, end) + (end < _content.length ? '...' : '');
             const reg = new RegExp(keyword, 'gi');
-            const m_content = matchContent.replace(reg, `<span class="keyword">${ keyword }</span>`)
+            const m_content = matchContent.replace(reg, `<span class="keyword">${keyword}</span>`)
 
             if (isMatch) {
-              tagHTML = post.tags.reduce((html, tag) => html + `<div class="search-tag">${ tag }</div>`, '');
-              categoryHTML = post.categories.reduce((html, category) => html + `<div class="search-tag">${ category }</div>`, '');
+              tagHTML = post.tags.reduce((html, tag) => html + `<div class="search-tag">${tag}</div>`, '');
+              categoryHTML = post.categories.reduce((html, category) => html + `<div class="search-tag">${category}</div>`, '');
 
               resultHTML += `
                 <li class="list-group-item py-2">
-                  <a href="${ post.url }">
-                    <span class="title">${ post.title }</span>
+                  <a href="${post.url}">
+                    <span class="title">${post.title}</span>
                   </a>
-                  <div class="content">${ m_content }</div>
-                  <div class="d-flex py-2">${ categoryHTML }${ tagHTML }</div>
+                  <div class="content">${m_content}</div>
+                  <div class="d-flex py-2">${categoryHTML}${tagHTML}</div>
                 </li>
               `
             }
