@@ -8,12 +8,12 @@ subtitle: ''
 description: ''
 keywords:
 author: paimonlee
-language: en
+language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://paimonlee.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -96,7 +96,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: peomas
+theme: pure
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

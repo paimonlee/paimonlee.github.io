@@ -42,9 +42,7 @@ jobs:
 
       - name: Generate static files
         run: |
-          bash hook/before_generate.sh
           hexo generate
-          bash hook/after_generate.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
