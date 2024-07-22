@@ -1,5 +1,9 @@
 ---
-title: 【Rust】cargo.md
+title: cargo
+categories:
+	- 编程语言
+	- rust
+	- rust基础
 ---
 # 一、Cargo介绍
 
@@ -186,42 +190,42 @@ cargo doc
 
 以下是Cargo的一些常用命令及其作用，它们可以帮助你更好地管理和构建Rust项目：
 
-|命令|作用|
-|--|--|
-|cargo new NAME|创建一个新的Rust项目|
-|cargo build|编译当前目录下的Rust项目|
-|cargo run|编译并运行当前目录下的Rust项目|
-|cargo test|运行当前目录下Rust项目的所有测试|
-|cargo check|检查代码是否可以编译，但不生成可执行文件|
-|cargo clean|清理项目，删除target目录及其内容|
-|cargo doc|为当前目录下的Rust项目生成文档|
-|cargo update|更新当前目录下Rust项目的所有依赖|
-|cargo install NAME|安装指定的crate到系统|
-|cargo publish|发布crate到crates.io|
-|cargo search TERM|在crates.io上搜索crate|
-|cargo bench|运行项目的基准测试|
-|cargo login TOKEN|登录到crates.io|
-|cargo owner|管理crate的所有者|
-|cargo package|打包一个crate以发布|
-|cargo uninstall|从系统中卸载一个crate|
-|cargo version|显示Cargo的版本信息|
+| 命令               | 作用                                     |
+| ------------------ | ---------------------------------------- |
+| cargo new NAME     | 创建一个新的Rust项目                     |
+| cargo build        | 编译当前目录下的Rust项目                 |
+| cargo run          | 编译并运行当前目录下的Rust项目           |
+| cargo test         | 运行当前目录下Rust项目的所有测试         |
+| cargo check        | 检查代码是否可以编译，但不生成可执行文件 |
+| cargo clean        | 清理项目，删除target目录及其内容         |
+| cargo doc          | 为当前目录下的Rust项目生成文档           |
+| cargo update       | 更新当前目录下Rust项目的所有依赖         |
+| cargo install NAME | 安装指定的crate到系统                    |
+| cargo publish      | 发布crate到crates.io                     |
+| cargo search TERM  | 在crates.io上搜索crate                   |
+| cargo bench        | 运行项目的基准测试                       |
+| cargo login TOKEN  | 登录到crates.io                          |
+| cargo owner        | 管理crate的所有者                        |
+| cargo package      | 打包一个crate以发布                      |
+| cargo uninstall    | 从系统中卸载一个crate                    |
+| cargo version      | 显示Cargo的版本信息                      |
 
 # 三、Cargo常用参数
 
 以下是Cargo命令的一些常用参数及其作用：
 
-|参数|作用|
-|--|--|
-|--verbose,-v|显示更多的输出信息|
-|--release|编译优化后的版本，而不是默认的调试版本|
-|--bin NAME|指定要编译或运行的二进制文件|
-|--example NAME|编译或运行项目中的示例代码|
-|--features "FEATURES"|启用指定的特性|
-|--no-default-features|禁用默认的特性|
-|--all-features|启用所有的特性|
-|--target TRIPLE|指定编译的目标平台|
-|--manifest-path PATH|指定Cargo.toml的路径|
-|--jobs N|并行运行的编译作业的数量|
-|--frozen|禁止更新Cargo.lock或下载依赖|
-|--locked|如果Cargo.lock需要更新，则失败|
-|--offline|禁止访问网络|
+| 参数                  | 作用                                   |
+| --------------------- | -------------------------------------- |
+| --verbose,-v          | 显示更多的输出信息                     |
+| --release             | 编译优化后的版本，而不是默认的调试版本 |
+| --bin NAME            | 指定要编译或运行的二进制文件           |
+| --example NAME        | 编译或运行项目中的示例代码             |
+| --features "FEATURES" | 启用指定的特性                         |
+| --no-default-features | 禁用默认的特性                         |
+| --all-features        | 启用所有的特性                         |
+| --target TRIPLE       | 指定编译的目标平台                     |
+| --manifest-path PATH  | 指定Cargo.toml的路径                   |
+| --jobs N              | 并行运行的编译作业的数量               |
+| --frozen              | 禁止更新Cargo.lock或下载依赖           |
+| --locked              | 如果Cargo.lock需要更新，则失败         |
+| --offline             | 禁止访问网络                           |

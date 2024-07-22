@@ -2,11 +2,11 @@
 menu:
   Home: .
   Archives: archives  # 归档
-  Categories: categories  # 分类
-  Tags: tags  # 标签
-  Repository: repository  # github repositories
-  Books: books  # 豆瓣书单
-  Links: links  # 友链
+  # Categories: categories  # 分类
+  # Tags: tags  # 标签
+  # Repository: repository  # github repositories
+  # Books: books  # 豆瓣书单
+  # Links: links  # 友链
   About: about  # 关于
 
 # Enable/Disable menu icons
@@ -14,15 +14,15 @@ menu_icons:
   enable: true  # 是否启用导航菜单图标
   home: icon-home-fill
   archives: icon-archives-fill
-  categories: icon-folder
-  tags: icon-tags
-  repository: icon-project
-  books: icon-book-fill
-  links: icon-friendship
+  # categories: icon-folder
+  # tags: icon-tags
+  # repository: icon-project
+  # books: icon-book-fill
+  # links: icon-friendship
   about: icon-cup-fill
 
 # rss
-rss: /atom.xml
+# rss: /atom.xml
 
 # Site
 site:
@@ -31,7 +31,7 @@ site:
     width: 40
     height: 40
     url: images/avatar.png
-  title: Hexo # 页面title
+  title: paimonlee的笔记本 # 页面title
   favicon: /favicon.png
   board: <p>欢迎交流与分享经验!</p> # 站点公告
   copyright: false # 底部版权信息
@@ -200,7 +200,7 @@ profile:
   social:
     links:
       github: https://github.com/paimonlee
-      rss: atom.xml
+      # rss: atom.xml
     link_tooltip: true # enable the social link tooltip, options: true, false
   skills:
     Java: ★★★☆☆

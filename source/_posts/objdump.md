@@ -1,8 +1,10 @@
 ---
-title: 【Shell】objdump命令.md
+title: objdump
+categories:
+	- shell
+	- shell命令
 ---
-objdump 命令，用于展示object文件的信息 
-
+objdump 命令，用于展示object文件的信息
 
 ```
 下面参数必须存在一个

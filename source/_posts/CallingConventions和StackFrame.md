@@ -1,8 +1,14 @@
 ---
-title: 【汇编】CallingConventions和StackFrame.md
+title: CallingConventions和StackFrame
+categories:
+	- 汇编
+	- ABI
+	- Linux
 ---
 # x64 Linux Calling Conventions
+
 参数从左到右，传递尽可能多的参数以适应寄存器，寄存器的分配顺序为：
+
 * 对于整数和指针：rdi，rsi，rdx，rcx，r8，r9（dsdc89）
 * 对于浮点数（float和double）：xmm0，xmm1，xmm2，xmm3，xmm4，xmm5，xmm6，xmm7（xmm0-7）
 
@@ -10,6 +16,7 @@ dsdc89可以适应不同类型的参数：
 ![dsdc89.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/dsdc89.png?raw=true)
 
 ps:如果参数中同时存在integer，pointer和float时，前两者按顺序使用dsdc89，后者按顺序使用xmm0-7.
+
 * 如果参数太多，无法用register传递的时候，多出来的参数走stack，从右到左压栈，caller清栈
 * stack上的参数，每个都占8字节
 * 最后push返回地址
@@ -21,9 +28,10 @@ ps:如果参数中同时存在integer，pointer和float时，前两者按顺序�
 
 所谓callee-save寄存器，表示这些寄存器的值，对于caller来说，不会被callee破坏，这些值在call指令前后不会变化，可以放心继续使用，不需要自己做push和pop。而caller-save寄存器，在call前后，不能保证其值不会变化，如果要在call之后继续使用，需要caller自己做push和pop。对于用于传参的dsdc89，它们都是caller-save寄存器。callee-saved寄存器，有可能会被每一层push和pop
 
-
 # Linux Stack Frame Layout on x64
+
 根据ABI描述，前6个integer或者指针参数传递进寄存器，第一个传入rdi，第二个传入rsi，之后是rdx，rcx，r8，r9。第七个开始的参数传入栈中
+
 ```c
 long myfunc(long a, long b, long c, long d,
             long e, long f, long g, long h)
@@ -34,6 +42,7 @@ long myfunc(long a, long b, long c, long d,
     return zz + 20;
 }
 ```
+
 ![stack_frame.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/stack_frame.png?raw=true)
 
 前6个参数通过寄存器传递，除开这些，和x86没啥区别。
@@ -50,6 +59,7 @@ long utilfunc(long a, long b, long c)
     return xx * yy * zz + sum;
 }
 ```
+
 使用gcc编译后：
 ![red_zone.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/red_zone.png?raw=true)
 
@@ -62,12 +72,13 @@ long utilfunc(long a, long b, long c)
 默认情况下，GCC 在 x86 上保留基本指针，但允许使用 -fomit-frame-pointer 编译标志进行优化。如何推荐使用此标志是一个有争议的问题 - 如果您对此感兴趣，您可以进行一些谷歌搜索。
 
 # Stack的16字节对齐
+
 x64架构下，ABI要求stack的16字节对齐。
 64位CPU，并不意味着每次存取8字节才是最快的，64只是寄存器的大小。而且，已经存在128位的寄存器在x64的架构中。不对齐的后果是，效率低，很多call会发生segmentation failt。
 任何内存分匹配函数（malloc，calloc或realloc）生成的块其实地址都必须是16的倍数
 
-
 # Windows在x64下的ABI
+
 https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/x64-architecture
 
 Unlike the x86, the C/C++ compiler only supports one calling convention on x64. This calling convention takes advantage of the increased number of registers available on x64:

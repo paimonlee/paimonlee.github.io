@@ -1,5 +1,8 @@
 ---
-title: 【Shell】read、readarray、mapfile.md
+title: read、readarray、mapfile
+categories:
+	- shell
+	- shell命令
 ---
 # read
 
@@ -22,11 +25,9 @@ title: 【Shell】read、readarray、mapfile.md
 read -a array -p "please input 5 nums,split by blank:"
 ```
 
-
 # readarray
 
 从标准输入中读取多行输入，存入指定数组
-
 
 * -d     指定每行的终结字符，而不是换行符
 * -n     指定读取的最多行数
@@ -36,7 +37,6 @@ read -a array -p "please input 5 nums,split by blank:"
 * -u    从文件描述符中读取数据
 * -C    每读取指定行数就调用一次回调函数
 * -c     指定调用回调函数的行数
-
 
 ```shell
 readarray -t array <<< $(ifconfig |grep inet|grep -v inet6|awk -F' ' '{print $2}')

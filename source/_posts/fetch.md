@@ -1,7 +1,11 @@
 ---
-title: 【Git】fetch.md
+title: fetch
+categories:
+	- git
+	- git命令
 ---
 # 更新同步远程分支情况
+
 ```
 # 拉取远程修改，不删除分支
 git fetch

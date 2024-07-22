@@ -1,5 +1,9 @@
 ---
-title: 【Python】协程.md
+title: python协程
+categories:
+	- python
+	- 语言
+	- python进阶
 ---
 # 关键字
 
@@ -21,49 +25,46 @@ asyncio.run(main())
 要实际运行一个协程，asyncio 提供了一下几种机制：
 
 - asyncio.run()函数用来运行最高层级的入口点"main()"函数
-  
 - 对协程执行await。
-  
+
   ```python
   import asyncio
   import time
-  
+
   async def say_after(delay, what):
       await asyncio.sleep(delay)
       print(what)
-  
-  
+
+
   async def main()
       print(f"start as {time.strftime('%X')}")
-  
+
       await say_after(1, 'hello')
       await say_after(2, 'world')
-  
+
       print(f"finished at {time.strftime('%X')}")
-  
+
   asyncio.run(main())
   ```
-  
 - asyncio.create_task()函数用来并发运行作为asyncio任务的多个协程
-  
+
   ```python
   async def main():
       task1 = asyncio.create_task(
           say_after(1, 'hello'))
-  
+
       task2 = asyncio.create_task(
           say_after(2, 'world'))
-  
+
       print(f"started at {time.strftime('%X')}")
-  
+
       # Wait until both tasks are completed (should take
       # around 2 seconds.)
       await task1
       await task2
-  
+
       print(f"finished at {time.strftime('%X')}")
   ```
-  
 - asyncio.TaskGroup类提供了create_task()的更现代化的替代。
 
   ```python
@@ -71,14 +72,14 @@ asyncio.run(main())
       async with asyncio.TaskGroup() as tg:
           task1 = tg.create_task(
               say_after(1, 'hello'))
-  
+
           task2 = tg.create_task(
               say_after(2, 'world'))
-  
+
           print(f"started at {time.strftime('%X')}")
-  
+
       # The await is implicit when the context manager exits.
-  
+
       print(f"finished at {time.strftime('%X')}")
   ```
 
@@ -91,9 +92,6 @@ asyncio.run(main())
 ## 协程
 
 python协程属于可等待对象，因此可以在其他写成中被等待：
-
-
-
 
 ```python
 import asyncio
@@ -112,8 +110,6 @@ asyncio.run(main())
 协程函数：定义形式为async def的函数
 
 协程对象：调用协程函数所返回来的对象
-
-
 
 ## 任务
 
@@ -136,8 +132,6 @@ async def main():
 asyncio.run(main())
 ```
 
-
-
 ## Futures
 
 Future是一种特殊的低层级可等待对象，表示一个异步操作的最终结果
@@ -145,8 +139,6 @@ Future是一种特殊的低层级可等待对象，表示一个异步操作的�
 当一个Future对象被等待，这意味着协程将保持等待直到该Future对象在其他地方操作完毕
 
 在asyncio中需要Future对象以便允许通过async/await使用基于回调的代码
-
-
 
 Future对象有时会由库和某些asyncio API暴露给用户，用作可等待对象：
 
@@ -159,9 +151,6 @@ async def main():
         some_python_coroutine()
     )
 ```
-
-
-
 
 # 创建任务
 
@@ -189,11 +178,4 @@ async def main():
 
 # Task 对象
 
-
-
-
-
-
-
 参考文档：[协程](https://docs.python.org/zh-cn/3/library/asyncio-task.html#coroutine)
-
