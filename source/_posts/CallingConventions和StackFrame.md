@@ -13,7 +13,7 @@ categories:
 * 对于浮点数（float和double）：xmm0，xmm1，xmm2，xmm3，xmm4，xmm5，xmm6，xmm7（xmm0-7）
 
 dsdc89可以适应不同类型的参数：
-![dsdc89.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/dsdc89.png?raw=true)
+![dsdc89.png](../images/dsdc89.png?raw=true)
 
 ps:如果参数中同时存在integer，pointer和float时，前两者按顺序使用dsdc89，后者按顺序使用xmm0-7.
 
@@ -43,7 +43,7 @@ long myfunc(long a, long b, long c, long d,
 }
 ```
 
-![stack_frame.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/stack_frame.png?raw=true)
+![stack_frame.png](../images/stack_frame.png?raw=true)
 
 前6个参数通过寄存器传递，除开这些，和x86没啥区别。
 简单地说，红色区域是一种优化。代码可以假设 rsp 以下的 128 个字节不会被信号或中断处理程序异步破坏，因此可以将其用于暂存数据，而无需显式移动堆栈指针。最后一句话是优化所在 - 减少 rsp 和恢复它是使用红色区域获取数据时可以保存的两条指令。
@@ -61,7 +61,7 @@ long utilfunc(long a, long b, long c)
 ```
 
 使用gcc编译后：
-![red_zone.png](https://github.com/paimonlee/paimon.github.io/blob/main/image/red_zone.png?raw=true)
+![red_zone.png](../images/red_zone.png?raw=true)
 
 由于utilfunc只有三个参数，不需要通过stack去传递参数。gcc 选择将红色区域用于其所有局部变量。因此，不需要递减（然后恢复）rsp 来为此数据分配空间。
 
