@@ -49,6 +49,7 @@ curl -T dodo1.JPG -u 用户名:密码 ftp://www.linux.com/img/
 比如：
 先访问首页，然后再访问首页中的邮箱页面，这里访问邮箱的referer地址就是访问首页成功后的页面地址，
 如果服务器发现对邮箱页面访问的referer地址不是首页的地址，就断定那是个盗连了
+
 ```shell
 #伪造为www.linux.com点击某个链接过来的
 curl -e "www.linux.com" http://mail.linux.com
@@ -57,6 +58,7 @@ curl -e "www.linux.com" http://mail.linux.com
 ## 4、伪造代理设备(模仿浏览器)
 
 有些网站需要使用特定的浏览器去访问他们，有些还需要使用某些特定的版本。curl内置option:-A可以让我们指定浏览器去访问网站
+
 ```shell
 curl -A "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.0)" http://www.linux.com
 ```
@@ -69,6 +71,7 @@ curl -H "Cache-Control:no-cache"  http://aiezu.com
 ```
 
 ## 6、设置代理
+
 ```shell
 # 指定proxy服务器以及其端口(option::-x)
 # 很多时候上网需要用到代理服务器(比如是使用代理服务器上网或者因为使用curl别人网站而被别人屏蔽IP地址的时候)，
@@ -79,6 +82,7 @@ curl -x 192.168.100.100:1080 http://www.linux.com
 ## 7、http响应头
 
 ### 查看http响应头(option:-I)
+
 ```shell
 curl -I  http://www.baidu.com
 ```
@@ -97,10 +101,12 @@ Content-Type: text/html; charset=utf-8
 ```
 
 ### 保存http的response里面的header信息(option:-D)
+
 ```shell
 # 执行后cookie信息就被存到了cookied.txt里面了
 curl -D cookied.txt http://www.linux.com
 ```
+
 注意：-c(小写)产生的cookie和-D里面的cookie是不一样的。
 
 ## 8、发送表单数据
@@ -112,6 +118,7 @@ curl -F "pic=@logo.png" -F "site=aiezu"  http://www.baidu.com/
 ## 9、cookie
 
 ### 发送cookie(option:-b）
+
 ```
 # 指定单条cookie
 curl -b "user=admin"  http://www.linux.com
@@ -120,7 +127,9 @@ curl -b cookiec.txt http://www.linux.com
 ```
 
 ### 保存http的response里面的cookie信息(option:-c）
+
 执行后http的response里面的cookie信息就被存到了cookiec.txt里面了
+
 ```shell
 curl -c cookiec.txt  http://www.linux.com
 ```
@@ -137,46 +146,35 @@ curl -o /dev/null -s -w %{http_code} www.linux.com
 
 ## 11、请求方式
 
+其中， 分别等价于-F, -G -d, -P
+
+```shell
+# -X POST = -F
+# -X GET = -G
+# -X PUT = -P
+# 默认携带请求头Content-Type: application/x-www-form-urlencoded
 curl -i -v -H '' -X POST -d '' http:www.test.com/a/b
-其中，-X POST -d, -X GET -d, -X PUT -d 分别等价于-F, -G -d, -P
 
-以post请求为例：
- -X POST -d
-(11.1.1)、POST application/x-www-form-urlencoded
-application/x-www-form-urlencoded是默认的
-curl -X POST -d "param1=value1¶m2=value2" http://localhost:3000/data
-等价于
-curl -H "Content-Type:application/x-www-form-urlencoded" -X POST -d "param1=value1¶m2=value2" http://localhost:3000/data
-使用数据文件
+# 使用数据文件，data.txt文件内容param1=value1&m2=value2
 curl -X POST -d "@data.txt" http://localhost:3000/data
-其中data.txt内容如下：param1=value1¶m2=value2
-
-(11.1.2)、POST application/json
-curl -H "Content-Type:application/json" -X POST -d '{"key1":"value1","key2":"value2"}' http://localhost:3000/data
-使用数据文件的话：
+# 直接使用命令行传参
+curl -H "Content-Type:application/x-www-form-urlencoded" -X POST -d "param1=value1&m2=value2" http://localhost:3000/data
+# 使用json文件：data.json内容如下：{"key1":"value1","key2":"value2"}
 curl -X POST -d "@data.json" http://localhost:3000/data
-其中data.json内容如下：{"key1":"value1","key2":"value2"}
-再举个例子：
+# 直接使用命令行传参
 curl -H "Content-type:application/json" -X POST -d "{\"app_key\":\"$appKey\",\"time_stamp\":\"$time\"}" http://www.test.com.cn/a/b
-
-11.2、-F
+# 传递文件
 curl  -v -H "token: 222" -F "file=@/Users/fungleo/Downloads/401.png" localhost:8000/api/v1/upimg
 
-curl -f http://www.linux.com/error
-
-11.3、其它举例
-
-(11.3.1)、
-
-curl  -X POST "http://www.test.com/e/f" -H "Content-Type:application/x-www-form-urlencoded;charset=UTF-8"
--d "a=b"
--d "c=d"
--d "e=f"
+curl  -X POST "http://www.test.com/e/f" -H "Content-Type:application/x-www-form-urlencoded;charset=UTF-8" \
+-d "a=b" \
+-d "c=d" \
+-d "e=f" \
 -d "g=h"
-
-(11.3.2)、错误：curl -i -G -d "a=b#1&c=d" http://www.test.com/e/f
-正确：要把参数值是特殊符号的用urlencode转换过来
+# 参数"a=b#1&c=d"不能直接传递，特殊符号的用urlencode转换过来
 curl -i -G -d "a=b%231&c=d" http://www.test.com/e/f
+```
+
 
 ## 12、调试
 
