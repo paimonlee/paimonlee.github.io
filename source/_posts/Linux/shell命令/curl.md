@@ -1,8 +1,8 @@
 ---
 title: curl命令示例
+date: 2024-12-13 20:35:33
 categories:
 	- shell
-	- shell命令
 ---
 ### 1、下载
 
@@ -174,7 +174,6 @@ curl  -X POST "http://www.test.com/e/f" -H "Content-Type:application/x-www-form-
 # 参数"a=b#1&c=d"不能直接传递，特殊符号的用urlencode转换过来
 curl -i -G -d "a=b%231&c=d" http://www.test.com/e/f
 ```
-
 
 ## 12、调试
 

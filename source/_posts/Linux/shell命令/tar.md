@@ -1,11 +1,9 @@
 ---
 title: tar
+date: 2024-12-13 20:35:33
 categories:
 	- shell
-	- shell命令
 ---
-# tar
-
 tar 命令用于将文件压缩,功能十分强大
 基本使用方法如下
 

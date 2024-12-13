@@ -1,9 +1,8 @@
 ---
 title: Calling Conventions和Stack Frame
+date: 2024-12-13 20:35:33
 categories:
 	- 汇编
-	- ABI
-	- Linux
 ---
 # x64 Linux Calling Conventions
 

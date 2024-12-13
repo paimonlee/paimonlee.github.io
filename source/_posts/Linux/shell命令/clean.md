@@ -1,8 +1,8 @@
 ---
 title: clean
+date: 2024-12-13 20:35:33
 categories:
 	- git
-	- git命令
 ---
 # 介绍
 

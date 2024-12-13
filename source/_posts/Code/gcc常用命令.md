@@ -1,8 +1,8 @@
 ---
 title: gcc常用命令
+
 categories:
 	- gcc
-	- gcc常用命令
 ---
 # 基本命令
 

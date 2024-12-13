@@ -1,9 +1,8 @@
 ---
 title: python协程
+
 categories:
 	- python
-	- 语言
-	- python进阶
 ---
 # 关键字
 

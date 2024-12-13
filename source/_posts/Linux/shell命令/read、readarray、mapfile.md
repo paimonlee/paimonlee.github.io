@@ -2,7 +2,6 @@
 title: read、readarray、mapfile
 categories:
 	- shell
-	- shell命令
 ---
 # read
 

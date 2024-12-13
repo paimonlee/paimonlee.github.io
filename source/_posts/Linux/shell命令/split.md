@@ -1,8 +1,8 @@
 ---
 title: split
+date: 2024-12-13 20:35:33
 categories:
 	- shell
-	- shell命令
 ---
 ## split命令的基本语法如下:
 
