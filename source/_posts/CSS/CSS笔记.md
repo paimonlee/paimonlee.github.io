@@ -1,0 +1,265 @@
+---
+title: '【CSS入门】 选择器'
+date: 2024-12-14 14:48:03
+categories:
+    - CSS入门
+---
+# 概念
+选择器用来指定网页上我们想要样式化的HTML元素
+
+# 种类
+
+## 1、元素选择器
+指向所有的HTML元素
+
+```css
+h1 {
+
+}
+```
+
+## 2、类选择器
+使用前提：为元素定义一个类
+
+代码示例：
+```css
+.box {
+
+}
+```
+使用类选择器选择指向应用了一个类的特定元素。
+
+```css
+span.highlight{
+    backgroud-color: yellow
+}
+
+h1.highlight{
+    backgroud-color: pink
+}
+```
+
+多个类被应用的时候指向一个元素
+
+```html
+<div class="notebox">
+    This is an informational note.
+</div>
+
+<div class="notebox warning">
+    This note shows a warning.
+</div>
+
+<div class="notebox danger">
+    This note shows danger!
+</div>
+
+<div class="danger">
+    This won't get styled — it also needs to have the notebox class
+</div>
+
+<style>
+.notebox {   
+  border: 4px solid #666;
+  padding: .5em;
+}
+
+.notebox.warning {
+  border-color: orange;
+  font-weight: bold;
+}
+
+.notebox.danger {
+  border-color: red;
+  font-weight: bold;
+} 
+</style>
+```
+
+## 3、ID选择器
+使用前提：为元素指定一个ID
+
+代码示例：
+```css
+#unique {
+
+}
+```
+
+使用id选择器指定有特定id的特定元素
+
+```css
+#one {
+  background-color: yellow;
+}
+
+h1#heading {
+  color: rebeccapurple;
+}
+```
+## 4、全局选择器
+选择文档中所有的内容，如果是紧随在其他元素以及邻代运算符之后，是父元素中的所有内容
+
+```css
+* {
+
+}
+```
+使用全局选择器，让选择器更容易阅读
+如果想选择article元素的第一子元素，可以使用:first-child
+
+```css
+article :first-child{
+
+}
+```
+这容易与article:first-child混淆，article:first-child选择作为其他元素的第一子元素的article元素
+
+为了避免这种情况，可以加入全局选择器，表示选贼article下的任何第一子元素
+```css
+article *:first-child{
+
+}
+```
+
+
+## 标签属性选择器
+
+1、根据元素上的某个标签属性的存在与否以选择元素
+
+代码示例：
+```css
+a[title] {
+
+}
+```
+
+2、根据一个有特定值的标签属性是否存在来选择
+
+代码示例：
+```css
+a[href="https://example.com"] {
+
+}
+
+# 值至少有一个等于
+a[href~="https://example.com"] {
+
+}
+
+# 元素的value startWith('zh')
+a[lang|='zh'] {
+
+}
+
+# value是值开头的substring(value)
+li[class^="a"] {
+  font-size: 200%;
+}
+
+# value endWith('a')
+li[class$="a"] {
+  background-color: yellow;
+}
+
+# value中至少出现了一次zh
+li[class*="zh"] {
+  color: red;
+}
+
+# 对匹配的值大小写不敏感
+li[class^="a" i] {
+  color: red;
+}
+
+```
+
+
+## 伪类与伪元素
+
+下面的选择器包含伪类，用来样式化一个元素的。
+:hover伪类会在鼠标指针悬浮到一个元素的时候选择这个元素
+
+```css
+a:hover {
+
+}
+```
+
+伪元素选择器，选择一个元素的某个部分而不是元素自己。
+::first-line是会选择一个元素的第一行
+```css
+p::first-line {
+
+}
+```
+
+[伪类文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)
+[伪元素文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)
+
+
+
+# 特殊技巧
+
+## 选择器列表
+如果有多个相同样式的CSS选择器，那么这些单独的选择器可以被混编为一个“选择器列表”，这样的化规则就可以应用到所有的单个选择器上了
+
+```css
+h1 {
+    color: blue;
+}
+
+.spacial{
+    color: blue;
+}
+```
+上面的css可以简化为：
+```css
+h1, .special {
+  color: blue;
+}
+```
+
+<b>注意：</b>如果存在任何一个选择器无效（存在语法错误），那么整个选择器都会被忽略
+
+## 后代选择器
+用单个空格字符，组合两个选择器,表示box下面的所有p元素
+
+```css
+# 选择box类下面的p元素
+.box p {
+  color: red;
+}
+```
+
+
+## 子代选择器
+最后一组选择器可以将其他选择器组合起来，更复杂的选择元素。
+
+运算符 (&gt;) 选择了artical元素的初代子元素
+
+```css
+article > p {
+
+}
+```
+
+## 邻接兄弟
+邻接兄弟选择器 （+）用来选择旁边的物件
+选择所有在p元素之后的img元素 p + img
+
+```css
+h1 + p {
+  font-weight: bold;
+  background-color: #333;
+  color: #fff;
+  padding: .5em;
+}
+```
+
+## 通用兄弟
+选中一个兄弟元素，即使他们不相邻，可以使用兄弟关系选择器~，选中所有元素p之后的同级img元素
+
+```css
+p ~ img
+```
