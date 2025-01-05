@@ -1,7 +1,8 @@
 ---
 title: objdump
+date: 2025-01-04 12:00:00
 categories:
-	- shell
+    - shell
 ---
 objdump 命令，用于展示object文件的信息
 

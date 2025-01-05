@@ -1,8 +1,8 @@
 ---
 title: JNI开发
-
+date: 2025-01-04 12:00:00
 categories:
-    - Java
+    - 编程
 ---
 # JNI 接口开发步骤
 

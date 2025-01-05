@@ -1,8 +1,8 @@
 ---
 title: RESTful文档
-
+date: 2025-01-04 12:00:00
 categories:
-    - RESTful
+    - 编程
 ---
 # RESTful学习文档
 

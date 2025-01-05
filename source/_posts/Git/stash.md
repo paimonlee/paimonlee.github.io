@@ -1,5 +1,6 @@
 ---
 title: stash
+date: 2025-01-04 12:00:00
 categories:
 	- git
 ---

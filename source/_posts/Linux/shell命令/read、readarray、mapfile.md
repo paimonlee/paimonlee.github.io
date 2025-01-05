@@ -1,5 +1,6 @@
 ---
 title: read、readarray、mapfile
+date: 2025-01-04 12:00:00
 categories:
 	- shell
 ---

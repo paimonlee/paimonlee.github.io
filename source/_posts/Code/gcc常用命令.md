@@ -1,8 +1,8 @@
 ---
 title: gcc常用命令
-
+date: 2025-01-04 12:00:00
 categories:
-	- gcc
+	- 编程
 ---
 # 基本命令
 
